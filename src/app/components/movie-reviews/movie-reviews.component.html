@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-5 card">
+    <p class="card-header text-center">{{reviewdmovie.title}}</p>
+    <img [src]="reviewdmovie.cover" width="35%" class="embed-responsive card-img">
+    <p class="card-body">Director: {{reviewdmovie.director}}</p>
+    <p class="card-body">Premiered: {{reviewdmovie.premiere}}</p>
+  </div>
+  <div class="col-lg card">
+    <div *ngIf="isadm != undefined && isadm !== null">
+      <div class="row card-header">
+        <div>
+          <label>
+            <textarea [maxLength]="1000" placeholder="Your review" [(ngModel)]="rev" class="input-group-lg" style="width: 250%"></textarea>
+          </label>
+        </div>
+      </div>
+      <div class="card-header">
+        <button class="btn btn-success" (click)="submitNewReview()">Submit Review!</button>
+      </div>
+    </div>
+    <div class="card-header">
+      <h5>See what others have to say:</h5>
+      <div class="row" *ngFor="let review of reviews">
+        <div class="card">
+          <p class="card-header">{{review.author}}</p>
+          <p class="card-text">{{review.rev}}</p>
+          <p *ngIf="(login != undefined && login === review.author) || (isadm != undefined && isadm === true)">
+            <button class="btn btn-danger" (click)="deleteReview(review)">Delete</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

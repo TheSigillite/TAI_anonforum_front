@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="row col-lg" *ngIf="isAdmin == null || isAdmin == undefined">
+      <div class="col-sm">
+        <input type="text" [(ngModel)]="login" name="login" placeholder="login"/>
+      </div>
+      <div class="col-sm">
+        <input type="text" [(ngModel)]="passwd" name="passwd" placeholder="password"/>
+      </div>
+      <div class="col-sm">
+        <button (click)="onSubmit()" class="btn btn-outline-primary"> Login </button>
+      </div>
+      <div class="col-sm">
+        <button class="btn btn-outline-secondary" routerLink="/register"> Register </button>
+      </div>
+    </div>
+    <div class="row col-sm" *ngIf="isAdmin != null || isAdmin != undefined">
+      <button class="btn btn-warning" (click)="logout()">Logout</button>
+    </div>
+    <!--<div *ngIf="isAdmin!=undefined && isAdmin.admin" class="col-sm">
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-primary" id="dropdown1" ngbDropdownToggle>Actions</button>
+        <div ngbDropdownMenu aria-labelledby="dropdown1">
+          <button ngbDropdownItem (click)="goToNewMovie()">Add New Movie</button>
+          <button ngbDropdownItem (click)="modUser()">Add Moderator</button>
+        </div>
+      </div>
+    </div>-->
+    <div>
+      <p>{{youexist}}</p>
+    </div>
+  </div>
+</div>

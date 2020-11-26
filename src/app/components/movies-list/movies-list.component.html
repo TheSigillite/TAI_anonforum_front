@@ -1,0 +1,15 @@
+<div class="item" *ngFor="let movie of movies$">
+  <div class="card">
+    <p class="card-header title">{{movie.title}}</p>
+    <img [src]="movie.cover" alt="img broke, fixz it" class="card-img img-fluid image mx-auto d-block" style="width: 25%">
+    <p class="card-text director">Director: {{movie.director}}</p>
+    <p class="card-text premiere">Premiered: {{movie.premiere}}</p>
+    <button class="btn btn-primary card-footer" (click)="goToReviews(movie)">See The Reviews...</button>
+    <!--<div class="row" *ngIf="isAdmin != undefined && isAdmin.admin===true">
+      <button class="col-md btn btn-danger" (click)="this.deletemovie(movie.movie_id)">Delete</button>
+      <button class="col-md btn btn-warning" (click)="editmovie(movie.movie_id)"> Edit </button>
+    </div>
+    -->
+  </div>
+</div>
+
