@@ -1,1 +1,11 @@
-<p>register-user works!</p>
+<button class="btn btn-warning" routerLink="/movies">Back</button>
+<form class="text-center border border-light p-5">
+  <p class="h4 mb-4">Register: </p>
+  <input type="text" class="form-control mb-4" placeholder="Login" name="login" [(ngModel)]="login">
+  <input type="password" class="form-control mb-4" placeholder="Password" name="pass" [(ngModel)]="passwd">
+  <input type="password" class="form-control mb-4" placeholder="Repeat Password" name="spass" [(ngModel)]="reperatpasswd">
+  <label class="mb-4">Passwords need to match up for register button to appear</label>
+  <p *ngIf="(login != null && passwd != null && reperatpasswd != null) && (passwd === reperatpasswd)">
+    <button class="my-4 btn btn-success" type="submit" (click)="sendRegister()">Register</button>
+  </p>
+</form>

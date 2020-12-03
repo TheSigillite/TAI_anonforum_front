@@ -20,4 +20,9 @@ export class UserService {
     tokenHeaders = tokenHeaders.append('x-auth-token', token);
     return this.httpClient3.delete<Response>(this.url + '/logout', {headers: tokenHeaders});
   }
+
+  registerUser(newUser: LoginUser){
+    return this.httpClient3.post<Response>(this.url + '/register', newUser);
+  }
+
 }
