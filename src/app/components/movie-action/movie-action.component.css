@@ -1,0 +1,7 @@
+.aligner{
+  align-self: stretch;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  font-size: large;
+}

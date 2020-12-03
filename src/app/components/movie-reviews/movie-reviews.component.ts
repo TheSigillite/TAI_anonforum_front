@@ -3,7 +3,8 @@ import {ReviewsService} from '../../services/reviews.service';
 import {CookieService} from 'ngx-cookie';
 import {Movie} from '../../interfaces/movie';
 import {Review} from '../../interfaces/Review';
-import {areAllEquivalent} from '@angular/compiler/src/output/output_ast';
+import {ActivatedRoute} from '@angular/router';
+import {MoviesServiceService} from '../../services/movies-service.service';
 
 @Component({
   selector: 'app-movie-reviews',
@@ -16,18 +17,31 @@ export class MovieReviewsComponent implements OnInit {
   isadm: boolean;
   rev: any;
   login: any;
+  private id: number;
 
-  constructor(private rservice: ReviewsService, private cservice: CookieService) { }
+  constructor(private rservice: ReviewsService, private cservice: CookieService
+            , private mservice: MoviesServiceService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     window.scroll(0, 0);
-    this.reviewdmovie = JSON.parse(localStorage.getItem('movie'));
-    this.login = localStorage.getItem('forumlogin');
-    this.isadm = JSON.parse(this.cservice.get('AnonforumAdminCookie'));
-    this.rservice.getReviewsForMovie(this.reviewdmovie.movie_id).subscribe(response => {
-      this.reviews = response;
-      console.log(this.reviews);
-    }, error => alert(error.error.details));
+    this.route.params.subscribe(params => {
+      this.id = +params.id;
+      this.mservice.getMovie(this.id).subscribe(result => {
+        this.reviewdmovie = result;
+        try{
+          this.login = localStorage.getItem('forumlogin');
+          this.isadm = JSON.parse(this.cservice.get('AnonforumAdminCookie'));
+        } catch (e) {
+          console.log(e);
+          this.isadm = false;
+          this.login = undefined;
+        }
+        this.rservice.getReviewsForMovie(this.reviewdmovie.movie_id).subscribe(response => {
+          this.reviews = response;
+          console.log(this.reviews);
+        }, error => alert(error.error.details));
+      });
+    });
   }
 
 
@@ -44,6 +58,6 @@ export class MovieReviewsComponent implements OnInit {
       .subscribe(response => {
         alert(response.message);
         location.reload();
-      })
+      });
   }
 }

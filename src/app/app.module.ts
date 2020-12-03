@@ -14,6 +14,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { CookieModule } from 'ngx-cookie';
 import { MovieReviewsComponent } from './components/movie-reviews/movie-reviews.component';
 import { UserbarComponent } from './components/userbar/userbar.component';
+import { MovieActionComponent } from './components/movie-action/movie-action.component';
+import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import { RegisterUserComponent } from './components/register-user/register-user.component';
 
 
 @NgModule({
@@ -21,20 +24,23 @@ import { UserbarComponent } from './components/userbar/userbar.component';
     AppComponent,
     MoviesListComponent,
     MovieReviewsComponent,
-    UserbarComponent
+    UserbarComponent,
+    MovieActionComponent,
+    RegisterUserComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule,
-    CookieModule.forRoot()
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatDialogModule,
+        CookieModule.forRoot(),
+        NgbDropdownModule
+    ],
   providers: [MoviesServiceService],
   bootstrap: [AppComponent]
 })

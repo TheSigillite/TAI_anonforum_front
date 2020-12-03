@@ -17,7 +17,7 @@
     <div class="row col-sm" *ngIf="isAdmin != null || isAdmin != undefined">
       <button class="btn btn-warning" (click)="logout()">Logout</button>
     </div>
-    <!--<div *ngIf="isAdmin!=undefined && isAdmin.admin" class="col-sm">
+    <div *ngIf="isAdmin!=undefined && isAdmin" class="col-sm">
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-outline-primary" id="dropdown1" ngbDropdownToggle>Actions</button>
         <div ngbDropdownMenu aria-labelledby="dropdown1">
@@ -25,7 +25,7 @@
           <button ngbDropdownItem (click)="modUser()">Add Moderator</button>
         </div>
       </div>
-    </div>-->
+    </div>
     <div>
       <p>{{youexist}}</p>
     </div>

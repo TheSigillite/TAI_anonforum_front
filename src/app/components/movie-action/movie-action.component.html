@@ -1,0 +1,45 @@
+<div class="align-items-center row" *ngIf="(isAdmin != undefined) && isAdmin">
+  <div class="col-lg align-content-center card">
+    <p class="card-header aligner">
+      <label>
+        movie id:
+        <input type="number" [(ngModel)]="movie_id" readonly>
+      </label>
+    </p>
+    <p class="card-header aligner">
+      <label>
+        Title:
+        <input type="text" [(ngModel)]="title">
+      </label>
+    </p>
+    <p class="card-header aligner">
+      <label>
+        Image link:
+        <input type="text" [(ngModel)]="cover">
+      </label>
+    </p>
+    <p class="card-header aligner">
+      <label>
+        Director:
+        <input type="text" [(ngModel)]="director">
+      </label>
+    </p>
+    <p class="card-header aligner">
+      <label>
+        Premiere Year:
+        <input type="number" [(ngModel)]="premiere">
+      </label>
+    </p>
+    <p class="card-header aligner" *ngIf="(movie_id != null) && ((movie_id != undefined))">
+      <button (click)="sendEdit()">Submit Edit</button>
+    </p>
+    <p class="card-header aligner" *ngIf="(movie_id == undefined) &&
+    (title != '' && cover != '' && director != '' && premiere != undefined)">
+      <button (click)="sendNew()">Add Movie</button>
+    </p>
+  </div>
+  <div class="col-sm">
+    <label style="font-size: xx-large">Cover Preview</label>
+    <img [src]="cover" width="20%" alt="Not a valid image link">
+  </div>
+</div>

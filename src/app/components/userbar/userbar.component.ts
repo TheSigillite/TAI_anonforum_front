@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {CookieService} from 'ngx-cookie';
 import * as crypto from 'crypto-js';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-userbar',
@@ -13,7 +14,7 @@ export class UserbarComponent implements OnInit {
   login: string;
   passwd: string;
   youexist: string;
-  constructor(private userService: UserService, private cookieService: CookieService) { }
+  constructor(private userService: UserService, private cookieService: CookieService, private routingService: Router) { }
 
   ngOnInit(): void {
     try{
@@ -42,6 +43,7 @@ export class UserbarComponent implements OnInit {
           , {expires: expiry, sameSite: 'strict', secure: true});
         this.cookieService.put('AnonforumAdminCookie', String(response.tokenPack.is_adm)
           , {expires: expiry, sameSite: 'strict', secure: true});
+        location.reload();
       } else {
         alert(response.message);
       }
@@ -56,6 +58,16 @@ export class UserbarComponent implements OnInit {
       this.isAdmin = undefined;
       this.cookieService.remove('AnonforumAuthCookie');
       this.cookieService.remove('AnonforumAdminCookie');
+      location.reload();
     });
+  }
+
+  goToNewMovie() {
+    this.routingService.navigateByUrl('moderators/addmovie');
+  }
+
+  modUser() {
+    // TODO: implement
+    return undefined;
   }
 }

@@ -5,11 +5,10 @@
     <p class="card-text director">Director: {{movie.director}}</p>
     <p class="card-text premiere">Premiered: {{movie.premiere}}</p>
     <button class="btn btn-primary card-footer" (click)="goToReviews(movie)">See The Reviews...</button>
-    <!--<div class="row" *ngIf="isAdmin != undefined && isAdmin.admin===true">
-      <button class="col-md btn btn-danger" (click)="this.deletemovie(movie.movie_id)">Delete</button>
-      <button class="col-md btn btn-warning" (click)="editmovie(movie.movie_id)"> Edit </button>
+    <div class="row" *ngIf="isAdmin != undefined && isAdmin==true">
+      <button class="col-md btn btn-danger" (click)="deletemovie(movie.movie_id)">Delete</button>
+      <button class="col-md btn btn-warning" (click)="editmovie(movie)"> Edit </button>
     </div>
-    -->
   </div>
 </div>
 
