@@ -25,4 +25,10 @@ export class UserService {
     return this.httpClient3.post<Response>(this.url + '/register', newUser);
   }
 
+  addModeator(newMod: any, token: string){
+    let tokenHeaders: HttpHeaders = new HttpHeaders();
+    tokenHeaders = tokenHeaders.append('x-auth-token', token);
+    return this.httpClient3.post<Response>(this.url + '/makemod', newMod, {headers: tokenHeaders});
+  }
+
 }

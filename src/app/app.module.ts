@@ -17,6 +17,7 @@ import { UserbarComponent } from './components/userbar/userbar.component';
 import { MovieActionComponent } from './components/movie-action/movie-action.component';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 import { RegisterUserComponent } from './components/register-user/register-user.component';
+import { ModUserComponent } from './components/mod-user/mod-user.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { RegisterUserComponent } from './components/register-user/register-user.
     MovieReviewsComponent,
     UserbarComponent,
     MovieActionComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    ModUserComponent
   ],
     imports: [
         BrowserModule,

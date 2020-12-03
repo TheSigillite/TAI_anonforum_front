@@ -3,6 +3,8 @@ import {UserService} from '../../services/user.service';
 import {CookieService} from 'ngx-cookie';
 import * as crypto from 'crypto-js';
 import {Router} from '@angular/router';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {ModUserComponent} from '../mod-user/mod-user.component';
 
 @Component({
   selector: 'app-userbar',
@@ -14,7 +16,8 @@ export class UserbarComponent implements OnInit {
   login: string;
   passwd: string;
   youexist: string;
-  constructor(private userService: UserService, private cookieService: CookieService, private routingService: Router) { }
+  constructor(private userService: UserService, private cookieService: CookieService
+            , private routingService: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     try{
@@ -67,7 +70,16 @@ export class UserbarComponent implements OnInit {
   }
 
   modUser() {
-    // TODO: implement
-    return undefined;
+    try {
+      const token = this.cookieService.get('AnonforumAuthCookie');
+      const dialogRef = this.dialog.open(ModUserComponent, {
+        width: '50%',
+        data: {
+          token
+        }
+      });
+    } catch (e) {
+      alert(e.toString());
+    }
   }
 }

@@ -1,0 +1,22 @@
+<div mat-dialog-content class="card">
+  <input matInput  [(ngModel)]="usr" class="input-group" placeholder="User to become moderator">
+</div>
+<div mat-dialog-actions class="background card">
+  <div *ngIf="usure!=undefined && !usure" class="card-body">
+    <button mat-button class="btn btn-danger" (click)="onDismiss()">Cancel</button>
+    <button mat-button class="btn btn-primary" (click)="confirm()"> Mod User </button>
+  </div>
+  <div *ngIf="usure!=undefined && usure" mat-dialog-actions class="card-body">
+    <div class="card-text">
+      <p class="textBlack">Are You Sure? This action is irreversible</p>
+    </div>
+    <div class="card-footer">
+      <button mat-button class="btn btn-primary" (click)="onCommit()">Yes</button>
+      <button mat-button class="btn btn-danger" (click)="onDismiss()">No</button>
+    </div>
+  </div>
+  <div *ngIf="success!=undefined && success" mat-dialog-actions class="card-footer">
+    <h5 class="textBlack">{{response}}</h5>
+    <button mat-button class="btn btn-primary" (click)="onDismiss()">Ok</button>
+  </div>
+</div>
