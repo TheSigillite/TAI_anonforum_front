@@ -41,20 +41,22 @@ export class MoviesListComponent implements OnInit {
       const token = this.cService.get('AnonforumAuthCookie');
       this.movieService.deleteMovie({movie_id}, token).subscribe(response => {
         const res: any = response;
-        if(res.succes){
-          alert('Film usunięty');
+        if (res.succes){
+          alert('Movie has been deleted');
           this.getAllMovies();
         } else {
-          alert('Coś poszło nie tak w backend');
+          alert('An error has occured: ' + res.message);
         }
       });
     } catch (e) {
-      alert('Problem z tokenem. Zalogój się ponownie. Jeśli problem dalej występuje skontaktój się z deweloperami');
+      alert('There is something wrong with your token. Relog and if it does not fix it then send a strongly worded email' +
+        'to the developers');
     }
   }
 
   // tslint:disable-next-line:variable-name
   editmovie(movie: any) {
+      localStorage.removeItem('toedit');
       localStorage.setItem('toedit', JSON.stringify(movie));
       this.router.navigateByUrl('moderators/modifymovie');
   }

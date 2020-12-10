@@ -24,7 +24,7 @@
         <div class="card">
           <p class="card-header">{{review.author}}</p>
           <p class="card-text">{{review.rev}}</p>
-          <p *ngIf="(login != undefined && login === review.author) || (isadm != undefined && isadm === true)">
+          <p *ngIf="(login != undefined && login === review.author) || (isadm != undefined && isadm === 1)">
             <button class="btn btn-danger" (click)="deleteReview(review)">Delete</button>
           </p>
         </div>

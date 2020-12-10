@@ -14,7 +14,7 @@ import {MoviesServiceService} from '../../services/movies-service.service';
 export class MovieReviewsComponent implements OnInit {
   reviews: any;
   reviewdmovie: Movie;
-  isadm: boolean;
+  isadm: any;
   rev: any;
   login: any;
   private id: number;
@@ -31,8 +31,10 @@ export class MovieReviewsComponent implements OnInit {
         try{
           this.login = localStorage.getItem('forumlogin');
           this.isadm = JSON.parse(this.cservice.get('AnonforumAdminCookie'));
+          console.log(this.isadm);
         } catch (e) {
           console.log(e);
+          console.log("error birch")
           this.isadm = false;
           this.login = undefined;
         }
@@ -46,11 +48,23 @@ export class MovieReviewsComponent implements OnInit {
 
 
   submitNewReview() {
-    this.rservice.submitReview({movie_id: this.reviewdmovie.movie_id , rev: this.rev}
-    , this.cservice.get('AnonforumAuthCookie')).subscribe(response => {
+    try{
+      if (this.rev === '' || this.rev === undefined){
+        alert('You have not written a review');
+        return;
+      }
+      this.rservice.submitReview({movie_id: this.reviewdmovie.movie_id , rev: this.rev}
+        , this.cservice.get('AnonforumAuthCookie')).subscribe(response => {
         alert(response.message);
         location.reload();
-    });
+      }, error => {
+          if (error instanceof TypeError){
+            alert('You are not logged in! Log in to post reviews.');
+          }
+      });
+    } catch (e) {
+      alert(e.toString());
+    }
   }
 
   deleteReview(rev: Review) {

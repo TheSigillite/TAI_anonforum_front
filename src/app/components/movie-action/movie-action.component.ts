@@ -47,7 +47,9 @@ export class MovieActionComponent implements OnInit {
         cover: this.cover, director: this.director, premiere: this.premiere}, token).subscribe(res => {
           const response: any = res;
           alert(response.message);
-          this.router.navigate(['/movies']);
+          if (response.succes === true){
+            this.router.navigate(['/movies']);
+          }
       });
     } catch (e) {
       alert(e.toString());
@@ -60,7 +62,9 @@ export class MovieActionComponent implements OnInit {
       this.movService.addNewMovie({title: this.title,
         cover: this.cover, director: this.director, premiere: this.premiere}, token).subscribe(res => {
           alert(res);
-          this.router.navigate(['/movies']);
+          if (res.succes === true){
+            this.router.navigate(['/movies']);
+          }
       });
     } catch (e) {
       alert(e.toString());

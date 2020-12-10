@@ -66,6 +66,7 @@ export class UserbarComponent implements OnInit {
   }
 
   goToNewMovie() {
+    localStorage.removeItem('toedit');
     this.routingService.navigateByUrl('moderators/addmovie');
   }
 
